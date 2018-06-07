@@ -1,6 +1,7 @@
 package befaster.solutions.HLO;
 
 import befaster.runner.SolutionNotImplementedException;
+import befaster.solutions.HLO.InvalidFriendException;
 
 public class HelloSolution {
 	
@@ -15,7 +16,10 @@ public class HelloSolution {
     {
     	if (friendName==null||friendName.equals(""))
     	{
-    		throw new InvalidFriendException("Null or empty friend -- oh dear");
+    		// throw new InvalidFriendException("Null or empty friend -- oh dear");
+    		// don't try to be clever with the exception
+    		return "Empty or null friend name supplied : please check the data and rerun ";
+    		
     	}
     	else
     	{
