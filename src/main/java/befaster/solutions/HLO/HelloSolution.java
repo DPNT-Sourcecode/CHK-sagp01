@@ -22,7 +22,9 @@ public class HelloSolution {
     	}
     	else
     	{
-    		return "Hello " + friendName + ", how are you ?";
+    		// return "Hello " + friendName + ", how are you ?";
+    		return "Hello World";
+
     	}
     }
 }
