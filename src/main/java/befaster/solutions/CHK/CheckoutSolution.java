@@ -1,5 +1,7 @@
 package befaster.solutions.CHK;
 
+import java.util.Vector;
+
 import javax.security.auth.login.LoginException;
 
 import befaster.runner.SolutionNotImplementedException;
@@ -55,7 +57,8 @@ public class CheckoutSolution {
 		Integer XCount=0;
 		Integer YCount=0;
 		Integer ZCount=0;
-
+		Integer STXYZCount=0;
+		Vector  vSTXYZ = new Vector();
 		
 		
 		for (int charNo=0; charNo<skus.length();charNo++)
@@ -185,10 +188,12 @@ public class CheckoutSolution {
 			else if (currentChar.equals("S"))
 			{
 				SCount++;
+				vSTXYZ.addElement("S");
 			}
 			else if (currentChar.equals("T"))
 			{
 				TCount++;
+				vSTXYZ.addElement("T");
 			}
 			else if (currentChar.equals("U"))
 			{
@@ -216,14 +221,17 @@ public class CheckoutSolution {
 			else if (currentChar.equals("X"))
 			{
 				XCount++;
+				vSTXYZ.addElement("X");
 			}
 			else if (currentChar.equals("Y"))
 			{
 				YCount++;
+				vSTXYZ.addElement("Y");
 			}
 			else if (currentChar.equals("Z"))
 			{
 				ZCount++;
+				vSTXYZ.addElement("Z");
 			}
 			else
 			{
@@ -262,11 +270,11 @@ public class CheckoutSolution {
 		total = total + (OCount*10);
 		total = total  +(PCount*50) + (PDiscount*200);
 		// deal with R & Q later
-		total = total + (SCount*30) + (TCount*20);
 		// deal with U later
 		total = total  +(VCount*50) + (VDiscount*90) + (VDiscountPlus*130);
-		total = total + (WCount*20) + (XCount*90) + (YCount*10) + (ZCount*50);
-			
+		total = total + (WCount*20);
+				
+
 		System.out.println("Skus = " + skus);
 
 		// Apply the B discount for buying multiple E's
@@ -421,6 +429,59 @@ public class CheckoutSolution {
 				Ufullprice = UCount%4;
 				total=total+(Ufullprice*40);
 			}
+		}
+		
+		
+		
+		/// figure out the stxyz calc
+		if (vSTXYZ.size()>2)
+		{
+			int itemCount=0;
+			int elementRemainingCount=vSTXYZ.size();
+			// figure out the scenarios
+			
+			// go through the array we have created 3 at a time and pull the item out
+			// eachtime we have 3 add 45  to the total until we are down to less than 3
+			for (int itemNumber=0; itemNumber<vSTXYZ.size(); itemNumber++)
+			{
+				itemCount++;
+				elementRemainingCount--;
+				itemCount++;
+				elementRemainingCount--;
+				itemCount++;
+				itemNumber=itemCount;
+				elementRemainingCount--;
+				total = total + 45;
+				if (elementRemainingCount<3)
+				{	
+					break;
+				}
+			}
+			
+			
+			// now go through the remainder and price them up one by one.
+			String element="";
+			for (int itemNumber=itemCount; itemNumber<vSTXYZ.size();itemNumber++)
+			{
+				element=(String) vSTXYZ.elementAt(itemCount);
+				if (element.equals("S")||element.equals("T")||element.equals("Y"))
+				{
+					total=total+20;
+				}
+				else if (element.equals("X"))
+				{
+					total=total+17;
+				}
+				else if (element.equals("Z"))
+				{
+					total=total+21;
+				}
+
+			}
+		}
+		else
+		{
+			total = total + (SCount*20) + (TCount*20)+ (XCount*17) + (YCount*20) + (ZCount*21);
 		}
 
 //		System.out.println("BCount = " + BCount);
