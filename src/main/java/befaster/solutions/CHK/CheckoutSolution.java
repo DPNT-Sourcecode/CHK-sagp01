@@ -264,7 +264,7 @@ public class CheckoutSolution {
 		total =	total + (CCount*20) + (DCount*15) + (ECount*40) + (GCount*20);
 		total = total +(HCount*10) + (HDiscount*45) + (HDiscountPlus*80);
 		total = total + (ICount*35) + (JCount*60);
-		total = total  +(KCount*80) + (KDiscount*150);
+		total = total  +(KCount*70) + (KDiscount*120);
 		total = total + (LCount*90);
 		// deal with N & M later
 		total = total + (OCount*10);
