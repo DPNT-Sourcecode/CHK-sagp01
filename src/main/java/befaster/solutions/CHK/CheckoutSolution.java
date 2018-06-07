@@ -9,6 +9,7 @@ public class CheckoutSolution {
     	String currentChar="";
     	Integer ACount =0;
     	Integer ADiscount=0;
+    	Integer ADiscountPlus=0;
     	Integer BDiscount=0;
     	Integer BCount =0;
     	Integer CCount =0;
@@ -25,6 +26,12 @@ public class CheckoutSolution {
     			if (ACount==3)
     			{
     				ADiscount++;
+    			}
+    			
+    			if (ACount==5)
+    			{
+    				ADiscountPlus++;
+    				ADiscount=ADiscount-1;
     				ACount=0;
     			}
     		}
@@ -61,7 +68,7 @@ public class CheckoutSolution {
     	
     	// calculat the totals 
     	// logic assumes that all the A or B won't be in sequence but will still qualify fir a discount
-    	total = (ACount*50) + (ADiscount*130) + (BCount*30)  + (CCount*20) + (DCount*15) + (ECount*40);
+    	total = (ACount*50) + (ADiscount*130) + (ADiscountPlus*200) +  (BCount*30)  + (CCount*20) + (DCount*15) + (ECount*40);
     	if (BCount>0)
     	{
     		total= total + (BDiscount*45);
