@@ -42,6 +42,7 @@ public class CheckoutSolution {
 		Integer PDiscount=0;
 		Integer QCount=0;
 		Integer QDiscount=0;
+		Integer QFullPrice=0;
 		Integer RCount=0;
 		Integer SCount=0;
 		Integer TCount=0;
@@ -359,6 +360,12 @@ public class CheckoutSolution {
 		if (RCount>0)
 		{
 			total =total + (RCount*50);
+			if (QDiscount>0)
+			{
+				QCount=QCount+(QDiscount*3);
+			}
+
+			// Work out the R affect
 			if (RCount%3==0)
 			{
 				//if  RCount is divisible by 3 then reduce the number of Q by 1
@@ -366,22 +373,32 @@ public class CheckoutSolution {
 				// Calculate the Q value if there are any
 				if (QCount>0)
 				{
-					total = total + ((QCount-(RCount/3))*30);
+					QCount=(QCount-(RCount/3));
+					//total = total + (QCount*30);
 				}
 			}
 			else
 			{
-				// Calculat the M value
+				// we have a decimal for the number of R/3
 				if (QCount>0&&Math.round(RCount/3)>=1)
 				{
-					total = total + ((QCount-(RCount/3))*30); 
+					QCount=(QCount-(RCount/3));
 				}
-				else if (QCount>0&&Math.round(RCount/3)<1)
-				{
-					total = total + (QCount*30); 
-				}
-
+				//otherwise we don't do anything as there are no R discounts to apply
 			}
+			
+			// need to work out the discount on the remaining Q
+			if (QCount%3==0)
+			{
+				// apply the discount formula
+				total = total + ((QCount/3)*80); 
+			}
+			else
+			{
+				QFullPrice = QCount%3;
+				total=total+(QFullPrice*30);
+			}
+			
 		}
 		else
 		{
@@ -416,7 +433,6 @@ public class CheckoutSolution {
 		System.out.println("Total = " + total);
 
 		return total;	
-
     	
     }
 
