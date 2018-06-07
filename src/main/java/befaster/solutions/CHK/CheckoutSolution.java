@@ -25,7 +25,7 @@ public class CheckoutSolution {
     		if (currentChar.equals("A"))
     		{
     			ACount++;
-    			if (ACount>3)
+    			if (ACount==3)
     			{
     				ADiscount++;
     				ACount=0;
@@ -34,7 +34,7 @@ public class CheckoutSolution {
     		else if (currentChar.equals("B"))
     		{
     			BCount++;
-    			if (BCount>2)
+    			if (BCount==2)
     			{
     				BDiscount++;
     				BCount=0;
