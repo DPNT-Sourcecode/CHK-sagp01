@@ -11,6 +11,7 @@ public class CheckoutSolution {
     {
     	
 
+
 		String currentChar="";
 		Integer ACount =0;
 		Integer ADiscount=0;
@@ -422,7 +423,7 @@ public class CheckoutSolution {
 				UDiscount=Math.round(UCount/4);
 				total =total  +     (((UCount/4)*3)     *40);
 				Ufullprice = UCount%4;
-				total=total+(Ufullprice*10);
+				total=total+(Ufullprice*40);
 			}
 		}
 
@@ -436,7 +437,6 @@ public class CheckoutSolution {
 		System.out.println("Total = " + total);
 
 		return total;	
-
     	
     }
 
