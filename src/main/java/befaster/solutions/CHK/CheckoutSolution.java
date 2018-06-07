@@ -1,8 +1,19 @@
 package befaster.solutions.CHK;
 
+import javax.security.auth.login.LoginException;
+
+
 import befaster.runner.SolutionNotImplementedException;
 
 public class CheckoutSolution {
+	
+	
+	public CheckoutSolution(String skus)
+	{
+		
+		this.checkout(skus);
+		
+	}
     public Integer checkout(String skus) 
     {
     	
@@ -78,4 +89,10 @@ public class CheckoutSolution {
     	
     	
     }
+    
+    public static void main(String[] args)
+    {
+    	CheckoutSolution test = new CheckoutSolution("AAAAA");
+    }
+    
 }
