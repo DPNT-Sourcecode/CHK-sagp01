@@ -102,24 +102,21 @@ public class CheckoutSolution {
 		// Now work out how many B's we have left and if that number gives us a better B price.
 		// get a number of discounted items
 		// So if B is divisible by 2 then all but one are at the reduced price.
-		Double BDiscountDouble= new Double(BCount/2);
+		// Only do this if the E Discount doesn't make all the B's free
 		
-		// BDsicount is currently a value that might be invalid so we need to count the remaining B to see if we are 
-		// still entitled to a discount after the A discount
-		
-		// BDiscount is
-		
-//		int bCountRequiredForDiscountLevel = BDiscount*2;
-//		if (BCount==bCountRequiredForDiscountLevel)
-//		{
-//			// thats fine we don't need to do anything
-//		}
-//		else
-//		{
-//			// need to recalculate the Biscount.
-//			Double BDiscountDouble= new Double(BCount/2);
-//		}
-		
+		if (BCount>0)
+		{
+			if (BCount%2==0)
+			{
+				BDiscount=BCount/2;
+				BCount=BCount-(2*BDiscount);
+			}
+			else
+			{
+				BDiscount=Math.round(BCount/2);
+				BCount=BCount-(2*BDiscount);
+			}
+		}
 		
 		// check to see if we are actually allowed the B Discount for multiple B's 
 		// Divide BCount by 2 => the E discount will have overriden the BCount after E Discount is applied.
@@ -129,7 +126,7 @@ public class CheckoutSolution {
 			total= total+ (BCount*30);
 		}
 
-		if (BDiscount>0&&BCount>0)
+		if (BDiscount>0)
 		{
 			total= total+ (BDiscount*45);
 		}
