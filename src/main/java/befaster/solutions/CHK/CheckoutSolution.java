@@ -158,6 +158,10 @@ public class CheckoutSolution {
 			{
 				NCount++;
 			}
+			else if (currentChar.equals("O"))
+			{
+				OCount++;
+			}
 			else if (currentChar.equals("P"))
 			{
 				PCount++;
@@ -254,7 +258,6 @@ public class CheckoutSolution {
 		// deal with R & Q later
 		total = total + (SCount*30) + (TCount*20);
 		// deal with U later
-		// total = total  +(QCount*30) + (QDiscount*80);
 		total = total  +(VCount*50) + (VDiscount*90) + (VDiscountPlus*130);
 		total = total + (WCount*20) + (XCount*90) + (YCount*10) + (ZCount*50);
 			
@@ -360,7 +363,6 @@ public class CheckoutSolution {
 		if (RCount>0)
 		{
 			total =total + (RCount*50);
-
 			if (RCount%3==0)
 			{
 				//if  RCount is divisible by 3 then reduce the number of Q by 1
@@ -369,8 +371,21 @@ public class CheckoutSolution {
 				// Calculate the Q value
 				if (QCount>0)
 				{
-					total = total + ((QCount-(RCount/3))*30); 
+					// calculat the new Q count with the R factored in
+				//	QCount =  ((QCount-(RCount/3));
+					// However we are in a buy 3 get one free scenario
+					if (QCount%3==0)
+					{
+						// just want 66% 
+					}
+					
 				}
+
+				total = total + ((QCount-(RCount/3))*30); 
+				
+				// 
+				
+				
 			}
 			else
 			{
@@ -386,6 +401,11 @@ public class CheckoutSolution {
 				}
 
 			}
+		}
+		else
+		{
+			// if there are no R then just do the standard discount
+			total = total  +(QCount*30) + (QDiscount*80);
 		}
 
 		/// Same sort of logic for N Count if its divisible by 2 with a remainder take one of the total for the price calc
