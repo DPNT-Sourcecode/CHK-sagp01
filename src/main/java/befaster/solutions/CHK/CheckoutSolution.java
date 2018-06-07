@@ -18,9 +18,11 @@ public class CheckoutSolution {
 		Integer BCount =0;
 		Integer CCount =0;
 		Integer ECount =0;
+		Integer EBAppliedDiscount=0;
 		Integer DCount =0;
 		Integer total=0;
-
+		Integer EAppDisccounter=0;
+		
 		for (int charNo=0; charNo<skus.length();charNo++)
 		{
 			currentChar=skus.substring(charNo, charNo+1);
@@ -59,9 +61,12 @@ public class CheckoutSolution {
 			else if (currentChar.equals("E"))
 			{
 				ECount++;
+				EAppDisccounter ++;
 				if (ECount==2)
 				{
-					BCount=BCount-1;
+					EBAppliedDiscount++;
+					// reset the discount counter
+					EAppDisccounter=0;
 				}
 			}
 			else
@@ -79,7 +84,7 @@ public class CheckoutSolution {
 		
 		// calculat the totals 
 		// logic assumes that all the A or B won't be in sequence but will still qualify fir a discount
-		total = (ACount*50) + (ADiscount*130) + (ADiscountPlus*200) +  (BCount*30)  + (CCount*20) + (DCount*15) + (ECount*40);
+		total = (ACount*50) + (ADiscount*130) + (ADiscountPlus*200) +  (CCount*20) + (DCount*15) + (ECount*40);
 
 		System.out.println("Skus = " + skus);
 		System.out.println("ACount = " + ACount);
@@ -91,14 +96,17 @@ public class CheckoutSolution {
 		System.out.println("DCount = " + DCount);
 		System.out.println("ECount = " + ECount);
 
+		BCount=BCount-EBAppliedDiscount;
+		
 		if (BCount>0)
 		{
-			total= total + (BDiscount*45);
+			total= (BCount*30) + (BDiscount*45);
 		}
 
 		System.out.println("Total = " + total);
 
 		return total;	
+
     	
     }
 
