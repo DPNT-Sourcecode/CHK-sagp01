@@ -70,6 +70,13 @@ public class CheckoutSolution {
 			}
 		}
 
+		// fudge for the fact we don't know whether to remove the discount.
+		
+		if (ADiscount>0)
+		{
+			ACount=ACount-(3*ADiscount);
+		}
+		
 		// calculat the totals 
 		// logic assumes that all the A or B won't be in sequence but will still qualify fir a discount
 		total = (ACount*50) + (ADiscount*130) + (ADiscountPlus*200) +  (BCount*30)  + (CCount*20) + (DCount*15) + (ECount*40);
