@@ -1,7 +1,6 @@
 package befaster.solutions.HLO;
 
 import befaster.runner.SolutionNotImplementedException;
-import befaster.solutions.HLO.InvalidFriendException;
 
 public class HelloSolution {
 	
@@ -12,7 +11,7 @@ public class HelloSolution {
 //	 - param[0] = a String. Ignore for now.
 //	 - @return = a String containing a message
 	
-    public String hello(String friendName) throws InvalidFriendException 
+    public String hello(String friendName)
     {
     	if (friendName==null||friendName.equals(""))
     	{
