@@ -10,6 +10,7 @@ public class CheckoutSolution {
     public Integer checkout(String skus) 
     {
     	
+
 		String currentChar="";
 		Integer ACount =0;
 		Integer ADiscount=0;
@@ -22,6 +23,9 @@ public class CheckoutSolution {
 		Integer DCount =0;
 		Integer total=0;
 		Integer EAppDisccounter=0;
+		Integer FCount=0;
+		Integer FDiscount=0;
+		Integer Ffullprice=0;
 		
 		for (int charNo=0; charNo<skus.length();charNo++)
 		{
@@ -68,6 +72,10 @@ public class CheckoutSolution {
 					// reset the discount counter
 					EAppDisccounter=0;
 				}
+			}
+			else if (currentChar.equals("F"))
+			{
+				FCount++;
 			}
 			else
 			{
@@ -130,10 +138,35 @@ public class CheckoutSolution {
 		{
 			total= total+ (BDiscount*45);
 		}
+
+
+		/// Same sort of logic for F Count if its divisible by 2 with a remainder take one of the total for the price calc
+		if (FCount>0)
+		{
+			if (FCount%3==0)
+			{
+				//if  FCount is divisible by 3 then reduce the amount by 33.3%
+				// so 3 get 1 free 6 get one free etc...
+				total =total + (((FCount/3)*2)*10);
+			}
+			else
+			{
+				FDiscount=Math.round(FCount/3);
+				total =total  +     (((FCount/3)*2)     *10);
+				Ffullprice = FCount%3;
+				total=total+(Ffullprice*10);
+			}
+		}
+
+		
 		
 		System.out.println("BCount = " + BCount);
 		System.out.println("BDiscount = " + BDiscount);
 		System.out.println("Discount B For 2E " + EBAppliedDiscount );
+		System.out.println("FCount = " + FCount);
+		System.out.println("FDiscount = " + FDiscount);
+		
+		
 		System.out.println("Total = " + total);
 
 		return total;	
