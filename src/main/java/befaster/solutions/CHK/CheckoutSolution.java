@@ -12,13 +12,10 @@ public class CheckoutSolution {
     	Integer BDiscount=0;
     	Integer BCount =0;
     	Integer CCount =0;
+    	Integer ECount =0;
     	Integer DCount =0;
     	Integer total=0;
-    	// this one doesn't make a lot of senses !!
-    	// we can return the value for A , B C etc.... but with a single parameter we can't specify the quantity.
-    	// unless we do something like pass in a JSON object.
-    	// to read that though we need a specification for the object.
-    	// this solution will just return the price but not taking into account the quality discount.
+    	
     	for (int charNo=0; charNo<skus.length();charNo++)
     	{
     		currentChar=skus.substring(charNo, charNo+1);
@@ -48,6 +45,14 @@ public class CheckoutSolution {
     		{
     			DCount++;
     	    }
+    		else if (currentChar.equals("E"))
+    		{
+    			ECount++;
+    			if (ECount==2)
+    			{
+    				BCount=BCount-1;
+    			}
+    	    }
     		else
     		{
     			return -1;
@@ -56,7 +61,11 @@ public class CheckoutSolution {
     	
     	// calculat the totals 
     	// logic assumes that all the A or B won't be in sequence but will still qualify fir a discount
-    	total = (ACount*50) + (ADiscount*130) + (BCount*30) + (BDiscount*45) + (CCount*20) + (DCount*15);
+    	total = (ACount*50) + (ADiscount*130) + (BCount*30)  + (CCount*20) + (DCount*15) + (ECount*40);
+    	if (BCount>0)
+    	{
+    		total= total + (BDiscount*45);
+    	}
     	
     	return total;
     	
