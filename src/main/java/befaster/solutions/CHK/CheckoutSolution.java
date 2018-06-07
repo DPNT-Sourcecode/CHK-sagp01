@@ -11,7 +11,6 @@ public class CheckoutSolution {
     {
     	
 
-
 		String currentChar="";
 		Integer ACount =0;
 		Integer ADiscount=0;
@@ -25,7 +24,6 @@ public class CheckoutSolution {
 		Integer total=0;
 		Integer EAppDisccounter=0;
 		Integer FCount=0;
-		Integer FDiscount=0;
 		Integer Ffullprice=0;
 		Integer GCount=0;
 		Integer HCount=0;		
@@ -45,11 +43,9 @@ public class CheckoutSolution {
 		Integer QCount=0;
 		Integer QDiscount=0;
 		Integer RCount=0;
-		Integer RDiscount=0;
 		Integer SCount=0;
 		Integer TCount=0;
 		Integer UCount=0;
-		Integer UDiscount=0;
 		Integer Ufullprice=0;
 		Integer VCount=0;
 		Integer VDiscount=0;
@@ -235,23 +231,31 @@ public class CheckoutSolution {
 		}
 
 		
-		
-
-		
 		// fudge for the fact we don't know whether to remove the discount.
 		
 		if (ADiscount>0)
 		{
 			ACount=ACount-(3*ADiscount);
 		}
+
+		if (HDiscount>0)
+		{
+			HCount=HCount-(5*HDiscount);
+		}
+
+		if (VDiscount>0)
+		{
+			VCount=VCount-(2*VDiscount);
+		}
+
 		
 		// calculat the totals 
 		// logic assumes that all the A or B won't be in sequence but will still qualify fir a discount
 		total = (ACount*50) + (ADiscount*130) + (ADiscountPlus*200);  
-		total =	total + (CCount*20) + (DCount*15) + (ECount*40);
-		total = total  +(HCount*10) +(GCount*20)+ (HDiscount*45) + (HDiscountPlus*80);
+		total =	total + (CCount*20) + (DCount*15) + (ECount*40) + (GCount*20);
+		total = total +(HCount*10) + (HDiscount*45) + (HDiscountPlus*80);
 		total = total + (ICount*35) + (JCount*60);
-		total = total  +(KCount*80) + (HDiscount*150);
+		total = total  +(KCount*80) + (KDiscount*150);
 		total = total + (LCount*90);
 		// deal with N & M later
 		total = total + (OCount*10);
@@ -263,14 +267,6 @@ public class CheckoutSolution {
 		total = total + (WCount*20) + (XCount*90) + (YCount*10) + (ZCount*50);
 			
 		System.out.println("Skus = " + skus);
-//		System.out.println("ACount = " + ACount);
-//		System.out.println("ADisount = " + ADiscount);
-//		System.out.println("ADiscountPlus = " + ADiscountPlus);
-//
-//		System.out.println("CCount = " + CCount);
-//		System.out.println("DCount = " + DCount);
-//		System.out.println("ECount = " + ECount);
-//		System.out.println("Discount B For 2E " + EBAppliedDiscount );
 
 		// Apply the B discount for buying multiple E's
 		BCount=BCount-EBAppliedDiscount;
@@ -318,7 +314,6 @@ public class CheckoutSolution {
 			}
 			else
 			{
-				FDiscount=Math.round(FCount/3);
 				total =total  +     (((FCount/3)*2)     *10);
 				Ffullprice = FCount%3;
 				total=total+(Ffullprice*10);
@@ -368,35 +363,20 @@ public class CheckoutSolution {
 			{
 				//if  RCount is divisible by 3 then reduce the number of Q by 1
 				// so 3 get 1 free 6 get two free etc...
-
-				// Calculate the Q value
+				// Calculate the Q value if there are any
 				if (QCount>0)
 				{
-					// calculat the new Q count with the R factored in
-				//	QCount =  ((QCount-(RCount/3));
-					// However we are in a buy 3 get one free scenario
-					if (QCount%3==0)
-					{
-						// just want 66% 
-					}
-					
+					total = total + ((QCount-(RCount/3))*30);
 				}
-
-				total = total + ((QCount-(RCount/3))*30); 
-				
-				// 
-				
-				
 			}
 			else
 			{
-				RDiscount = Math.round(RCount/3);
 				// Calculat the M value
-				if (QCount>0&&RDiscount>=1)
+				if (QCount>0&&Math.round(RCount/3)>=1)
 				{
 					total = total + ((QCount-(RCount/3))*30); 
 				}
-				else if (QCount>0&&RDiscount<1)
+				else if (QCount>0&&Math.round(RCount/3)<1)
 				{
 					total = total + (QCount*30); 
 				}
@@ -420,7 +400,6 @@ public class CheckoutSolution {
 			}
 			else
 			{
-				UDiscount=Math.round(UCount/4);
 				total =total  +     (((UCount/4)*3)     *40);
 				Ufullprice = UCount%4;
 				total=total+(Ufullprice*40);
@@ -437,6 +416,7 @@ public class CheckoutSolution {
 		System.out.println("Total = " + total);
 
 		return total;	
+
     	
     }
 
