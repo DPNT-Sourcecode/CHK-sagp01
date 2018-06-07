@@ -44,11 +44,11 @@ public class CheckoutSolution {
 			else if (currentChar.equals("B"))
 			{
 				BCount++;
-				if (BCount==2)
-				{
-					BDiscount++;
-					BCount=0;
-				}
+//				if (BCount==2)
+//				{
+//					BDiscount++;
+//					BCount=0;
+//				}
 			}
 			else if (currentChar.equals("C"))
 			{
@@ -62,7 +62,7 @@ public class CheckoutSolution {
 			{
 				ECount++;
 				EAppDisccounter ++;
-				if (ECount==2)
+				if (EAppDisccounter==2)
 				{
 					EBAppliedDiscount++;
 					// reset the discount counter
@@ -90,24 +90,53 @@ public class CheckoutSolution {
 		System.out.println("ACount = " + ACount);
 		System.out.println("ADisount = " + ADiscount);
 		System.out.println("ADiscountPlus = " + ADiscountPlus);
-		System.out.println("BCount = " + BCount);
-		System.out.println("BDiscount = " + BDiscount);
+
 		System.out.println("CCount = " + CCount);
 		System.out.println("DCount = " + DCount);
 		System.out.println("ECount = " + ECount);
+		System.out.println("Discount B For 2E " + EBAppliedDiscount );
 
+		// Apply the B discount for buying multiple E's
 		BCount=BCount-EBAppliedDiscount;
+
+		// Now work out how many B's we have left and if that number gives us a better B price.
+		// get a number of discounted items
+		// So if B is divisible by 2 then all but one are at the reduced price.
+		Double BDiscountDouble= new Double(BCount/2);
+		
+		// BDsicount is currently a value that might be invalid so we need to count the remaining B to see if we are 
+		// still entitled to a discount after the A discount
+		
+		// BDiscount is
+		
+//		int bCountRequiredForDiscountLevel = BDiscount*2;
+//		if (BCount==bCountRequiredForDiscountLevel)
+//		{
+//			// thats fine we don't need to do anything
+//		}
+//		else
+//		{
+//			// need to recalculate the Biscount.
+//			Double BDiscountDouble= new Double(BCount/2);
+//		}
+		
+		
+		// check to see if we are actually allowed the B Discount for multiple B's 
+		// Divide BCount by 2 => the E discount will have overriden the BCount after E Discount is applied.
 		
 		if (BCount>0)
 		{
 			total= total+ (BCount*30);
 		}
 
-		if (BDiscount>0)
+		if (BDiscount>0&&BCount>0)
 		{
 			total= total+ (BDiscount*45);
 		}
-
+		
+		System.out.println("BCount = " + BCount);
+		System.out.println("BDiscount = " + BDiscount);
+		System.out.println("Discount B For 2E " + EBAppliedDiscount );
 		System.out.println("Total = " + total);
 
 		return total;	
