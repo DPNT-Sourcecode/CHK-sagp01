@@ -156,8 +156,7 @@ public class CheckoutSolution {
 			}
 			else if (currentChar.equals("N"))
 			{
-				MCount++;
-				NCount--;
+				NCount++;
 			}
 			else if (currentChar.equals("P"))
 			{
@@ -245,7 +244,7 @@ public class CheckoutSolution {
 		// logic assumes that all the A or B won't be in sequence but will still qualify fir a discount
 		total = (ACount*50) + (ADiscount*130) + (ADiscountPlus*200);  
 		total =	total + (CCount*20) + (DCount*15) + (ECount*40);
-		total = total  +(HCount*10) + (HDiscount*45) + (HDiscountPlus*80);
+		total = total  +(HCount*10) +(GCount*20)+ (HDiscount*45) + (HDiscountPlus*80);
 		total = total + (ICount*35) + (JCount*60);
 		total = total  +(KCount*80) + (HDiscount*150);
 		total = total + (LCount*90);
@@ -260,14 +259,14 @@ public class CheckoutSolution {
 		total = total + (WCount*20) + (XCount*90) + (YCount*10) + (ZCount*50);
 			
 		System.out.println("Skus = " + skus);
-		System.out.println("ACount = " + ACount);
-		System.out.println("ADisount = " + ADiscount);
-		System.out.println("ADiscountPlus = " + ADiscountPlus);
-
-		System.out.println("CCount = " + CCount);
-		System.out.println("DCount = " + DCount);
-		System.out.println("ECount = " + ECount);
-		System.out.println("Discount B For 2E " + EBAppliedDiscount );
+//		System.out.println("ACount = " + ACount);
+//		System.out.println("ADisount = " + ADiscount);
+//		System.out.println("ADiscountPlus = " + ADiscountPlus);
+//
+//		System.out.println("CCount = " + CCount);
+//		System.out.println("DCount = " + DCount);
+//		System.out.println("ECount = " + ECount);
+//		System.out.println("Discount B For 2E " + EBAppliedDiscount );
 
 		// Apply the B discount for buying multiple E's
 		BCount=BCount-EBAppliedDiscount;
@@ -352,6 +351,10 @@ public class CheckoutSolution {
 
 			}
 		}
+		else 
+		{
+			total = total + (MCount*15); 
+		}
 		
 		/// Same sort of logic for N Count if its divisible by 2 with a remainder take one of the total for the price calc
 		if (RCount>0)
@@ -403,11 +406,11 @@ public class CheckoutSolution {
 			}
 		}
 
-		System.out.println("BCount = " + BCount);
-		System.out.println("BDiscount = " + BDiscount);
-		System.out.println("Discount B For 2E " + EBAppliedDiscount );
-		System.out.println("FCount = " + FCount);
-		System.out.println("FDiscount = " + FDiscount);
+//		System.out.println("BCount = " + BCount);
+//		System.out.println("BDiscount = " + BDiscount);
+//		System.out.println("Discount B For 2E " + EBAppliedDiscount );
+//		System.out.println("FCount = " + FCount);
+//		System.out.println("FDiscount = " + FDiscount);
 		
 		
 		System.out.println("Total = " + total);
