@@ -19,7 +19,7 @@ public class CheckoutSolution {
     	// unless we do something like pass in a JSON object.
     	// to read that though we need a specification for the object.
     	// this solution will just return the price but not taking into account the quality discount.
-    	for (int charNo=0; charNo<=skus.length();charNo++)
+    	for (int charNo=0; charNo<skus.length();charNo++)
     	{
     		currentChar=skus.substring(charNo, charNo+1);
     		if (currentChar.equals("A"))
