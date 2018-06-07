@@ -100,7 +100,12 @@ public class CheckoutSolution {
 		
 		if (BCount>0)
 		{
-			total= (BCount*30) + (BDiscount*45);
+			total= total+ (BCount*30);
+		}
+
+		if (BDiscount>0)
+		{
+			total= total+ (BDiscount*45);
 		}
 
 		System.out.println("Total = " + total);
